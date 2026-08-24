@@ -1,0 +1,61 @@
+name: System Report
+
+on:
+  push:
+    branches:
+        - main
+
+jobs:
+
+  system-info:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check OS and kernel
+        run: |
+            cat /etc/os-release
+            uname -r
+
+      - name: Check disk space
+        run: df -h
+
+      - name: Check date and time
+        run: date
+
+      - name: Install tree
+        run: sudo apt-get install -y tree
+
+      - name: Run tree
+        run: tree -L 2 ~
+
+  tool-check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Install jq
+        run: sudo apt-get install -y jq
+
+      - name: Create report
+        run: |
+            cat > report.json <<'EOF'
+            {
+                "name": "Henry",
+                "age": 20,
+                "city": "Delhi"
+            }
+            EOF
+
+      - name: Print value
+        run: jq '.name' report.json
+
+      - name: Print Python version
+        run: python3 --version
+
+      - name: Print Git version
+        run: git --version
+
+      - name: Print jq version
+        run: jq --version
+
+      - name: Complete
+        run: echo "Report complete"
