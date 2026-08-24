@@ -9,7 +9,9 @@ jobs:
 
     steps:
       - name: Show branch
-        run: echo "Running on branch: ${{ github.ref_name }}"
+        run: |
+          echo "Running on branch: ${{ github.ref_name }}"
 
       - name: Show message
-        run: echo "Manual workflow is working!"
+        run: |
+          echo "Manual workflow is working!"
