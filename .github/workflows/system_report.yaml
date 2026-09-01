@@ -1,9 +1,8 @@
 name: System Report
 
 on:
-  push:
-    branches:
-        - main
+    workflow_dispatch:
+
 
 jobs:
 
